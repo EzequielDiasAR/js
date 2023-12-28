@@ -91,9 +91,22 @@ function verEstadisticas() {
     calculadoraEstadisticas.mostrarEstadisticas();
 }
 
-let opcion = parseInt(prompt("Elija una opción: \n 1-sumar \n 2-restar \n 3-multiplicar \n 4-dividir \n 5-Ver historial \n 6-Ver estadísticas \n 7-Salir"));
+function calcularPromedio() {
+    if (historial.length === 0) {
+        alert("No hay operaciones en el historial");
+        return;
+    }
 
-while (opcion !== 7) {
+    const sumaTotal = historial.reduce((total, operacion) => total + operacion.resultado, 0);
+    const promedio = sumaTotal / historial.length;
+
+    alert(`Promedio de resultados: ${promedio}`);
+}
+
+
+let opcion = parseInt(prompt("Elija una opción: \n 1-sumar \n 2-restar \n 3-multiplicar \n 4-dividir \n 5-Ver historial \n 6-Ver estadísticas \n 7-Promedio \n 8- Salir"));
+
+while (opcion !== 8) {
     switch (opcion) {
         case 1:
             sumar();
@@ -113,12 +126,15 @@ while (opcion !== 7) {
         case 6:
             verEstadisticas();
             break;
+        case 7:
+            calcularPromedio();
+            break
         default:
             alert("Opcion incorrecta");
             break;
     }
 
-    opcion = parseInt(prompt("Elija una opción: \n 1-sumar \n 2-restar \n 3-multiplicar \n 4-dividir \n 5-Ver historial \n 6-Ver estadísticas \n 7-Salir"));
+    opcion = parseInt(prompt("Elija una opción: \n 1-sumar \n 2-restar \n 3-multiplicar \n 4-dividir \n 5-Ver historial \n 6-Ver estadísticas \n 7-Promedio \n 8-Salir"));
 }
 
 alert("Finalizando programa, enter para cerrar");
